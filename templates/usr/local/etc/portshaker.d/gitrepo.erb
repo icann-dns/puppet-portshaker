@@ -1,0 +1,6 @@
+#!/bin/sh
+. /usr/local/share/portshaker/portshaker.subr
+method="git"
+git_clone_uri="<%= @git_clone_uri %>"
+git_branch="<%= @git_branch %>"
+run_portshaker_command $*

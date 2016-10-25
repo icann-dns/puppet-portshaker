@@ -1,0 +1,25 @@
+# vim:set syntax=sh:
+# $Id$
+# Puppet
+
+#---[ Base directory for mirrored Ports Trees ]---
+mirror_base_dir="<%= @mirror_base_dir %>"
+
+#---[ Directories where to merge ports ]---
+ports_trees="<%= @ports_trees.join(' ') %>"
+
+<%- if @use_zfs %>
+use_zfs="yes"
+<%- else -%>
+use_zfs="no"
+<%- end -%>
+
+
+<%- if @use_poudriere -%>
+poudriere_ports_mountpoint="<%= @poudriere_ports_mountpoint %>"
+default_poudriere_tree="<%= @default_poudriere_tree %>"
+<%- else -%>
+default_ports_tree="<%= @default_ports_tree %>"
+<%- end -%>
+default_merge_from="<%= @default_merge_from %><%- if @git_clone_uri -%> gitrepo<%-end -%>"
+
