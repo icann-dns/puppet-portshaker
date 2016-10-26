@@ -1,20 +1,20 @@
 # == Class: portshaker
 #
 class portshaker (
-  String            $package                    = 'portshaker'
-  Tea::Absolutepath $mirror_base_dir            = '/var/cache/portshaker'
-  Array[String]     $ports_trees                = ['default']
-  Tea::Absolutepath $default_ports_tree         = '/usr/ports'
-  String            $default_merge_from         = 'freebsd'
-  String            $default_poudriere_tree     = 'default'
-  Tea::Absolutepath $poudriere_ports_mountpoint = '/usr/local/poudriere/ports'
-  String            $git_branch                 = 'master'
-  Boolean           $use_zfs                    = false
-  Boolean           $use_poudriere              = false
-  Tea::Absolutepath $portshaker_conf_file       = '/usr/local/etc/portshaker.conf'
-  Boolean           $add_cron                   = true
-  Optional[Tea::HTTPUrl] $git_clone_uri         = undef
-) inherits portshaker::params {
+  String            $package                    = 'portshaker',
+  Tea::Absolutepath $mirror_base_dir            = '/var/cache/portshaker',
+  Array[String]     $ports_trees                = ['default'],
+  Tea::Absolutepath $default_ports_tree         = '/usr/ports',
+  String            $default_merge_from         = 'freebsd',
+  String            $default_poudriere_tree     = 'default',
+  Tea::Absolutepath $poudriere_ports_mountpoint = '/usr/local/poudriere/ports',
+  String            $git_branch                 = 'master',
+  Boolean           $use_zfs                    = false,
+  Boolean           $use_poudriere              = false,
+  Tea::Absolutepath $portshaker_conf_file       = '/usr/local/etc/portshaker.conf',
+  Boolean           $add_cron                   = true,
+  Optional[Tea::HTTPUrl] $git_clone_uri         = undef,
+) {
 
   if $git_clone_uri {
     validate_string($git_clone_uri)
