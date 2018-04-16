@@ -243,7 +243,7 @@ describe 'portshaker' do
             is_expected.to contain_file('/usr/local/etc/portshaker.conf').with(
               'ensure' => 'file'
             ).with_content(
-              %r{default_merge_from="freebsd gitrepo"}
+              %r{default_merge_from="freebsd foobar"}
             )
           end
           it do
