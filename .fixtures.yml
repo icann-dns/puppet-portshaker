@@ -4,8 +4,5 @@ fixtures:
     repositories:
       stdlib:
         repo: https://github.com/puppetlabs/puppetlabs-stdlib.git
-        ref: 4.12.0
-      tea:
-        repo: https://github.com/icann-dns/puppet-tea.git
-        ref: 0.2.5
+        ref: 4.25.0
     forge_modules:

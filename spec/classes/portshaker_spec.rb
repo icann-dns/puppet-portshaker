@@ -170,13 +170,17 @@ describe 'portshaker' do
         context 'git_branch' do
           before do
             params.merge!(
-              git_branch: 'foobar',
-              git_clone_uri: 'https://github.com/icann-dns/puppet-portshaker'
+              git_clone_uri: {
+                'foobar' => {
+                  'uri' => 'https://github.com/icann-dns/puppet-portshaker',
+                  'branch' => 'foobar'
+                }
+              }
             )
           end
           it { is_expected.to compile }
           it do
-            is_expected.to contain_file('/usr/local/etc/portshaker.d/gitrepo').with(
+            is_expected.to contain_file('/usr/local/etc/portshaker.d/foobar').with(
               'ensure' => 'file'
             ).with_content(
               %r{git_clone_uri="https://github.com/icann-dns/puppet-portshaker"}
@@ -224,7 +228,15 @@ describe 'portshaker' do
           it { is_expected.not_to contain_cron('portshaker update') }
         end
         context 'git_clone_uri' do
-          before { params.merge!(git_clone_uri: 'https://foo.bar/icann-dns/puppet-portshaker') }
+          before do
+            params.merge!(
+              git_clone_uri: { 
+                'foobar' => {
+                  'uri' => 'https://foo.bar/icann-dns/puppet-portshaker'
+                }
+              }
+            )
+          end
           it { is_expected.to compile }
           it { is_expected.to contain_package('git') }
           it do
@@ -235,7 +247,7 @@ describe 'portshaker' do
             )
           end
           it do
-            is_expected.to contain_file('/usr/local/etc/portshaker.d/gitrepo').with(
+            is_expected.to contain_file('/usr/local/etc/portshaker.d/foobar').with(
               'ensure' => 'file'
             ).with_content(
               %r{git_clone_uri="https://foo.bar/icann-dns/puppet-portshaker"}
